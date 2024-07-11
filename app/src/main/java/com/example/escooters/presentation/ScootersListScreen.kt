@@ -92,10 +92,10 @@ fun ScooterListItem(
             )
             Spacer(modifier = Modifier.height(4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Battery: ${scooter.batteryLevel}%")
+                Text("Battery: ${scooter.battery}%")
                 Spacer(modifier = Modifier.weight(1f))
-                val availabilityText = if (scooter.isInUse) "In Use" else "Available"
-                Text(text = "$availabilityText", color = if (scooter.isInUse) Color.Red else Color.Green)
+                val availabilityText = if (scooter.inUse) "In Use" else "Available"
+                Text(text = availabilityText, color = if (scooter.inUse) Color.Red else Color.Green)
             }
         }
     }

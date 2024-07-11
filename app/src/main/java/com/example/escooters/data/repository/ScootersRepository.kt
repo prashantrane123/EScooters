@@ -1,16 +1,32 @@
 package com.example.escooters.data.repository
 
-import com.example.escooters.data.model.Scooter
+import com.example.escooters.data.model.ScootersResponse
+import com.example.escooters.network.api.ScootersApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 class ScootersRepository
     @Inject
-    constructor()
-{
-        suspend fun getScooters(): Flow<List<Scooter>> = flow {
-                emit(mutableListOf(Scooter("hi","hi", "hi", 3, isInUse = true, true,5)))
-            }
-        }
+    constructor() {
+        private val scootersApi: ScootersApi = provideScooterApi(providesRetrofit())
 
+        suspend fun getScooters(): Flow<ScootersResponse> =
+            flow {
+                val response = scootersApi.getScooters()
+                if (response.isSuccessful) {
+                    response.body()?.let { emit(it) }
+                }
+            }
+
+        private fun providesRetrofit(): Retrofit =
+            Retrofit
+                .Builder()
+                .baseUrl("https://storage.googleapis.com/voi-android-technical-interview/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        private fun provideScooterApi(retrofit: Retrofit): ScootersApi = retrofit.create(ScootersApi::class.java)
+    }

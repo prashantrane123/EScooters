@@ -23,7 +23,7 @@ class ScootersViewModel @Inject constructor(
             mutableScootersListUiState.value = ScooterListUiState.Loading
 
             scootersRepository.getScooters().collect {
-                mutableScootersListUiState.value = ScooterListUiState.Success(it)
+                mutableScootersListUiState.value = ScooterListUiState.Success(it.scooters)
             }
         }
     }
