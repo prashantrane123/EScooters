@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -73,5 +74,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-moshi:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    implementation ("androidx.navigation:navigation-compose:2.8.0-alpha08")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 }
 kapt{ correctErrorTypes = true}

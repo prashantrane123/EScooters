@@ -1,16 +1,22 @@
 package com.example.escooters
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.escooters.data.model.Scooter
+import com.example.escooters.presentation.ScooterDetailsScreen
 import com.example.escooters.presentation.ScootersListScreen
 import com.example.escooters.presentation.ScootersViewModel
 import com.example.escooters.ui.theme.EScootersTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -22,10 +28,51 @@ class MainActivity : ComponentActivity() {
         setContent {
             EScootersTheme {
                 val uiState = scootersViewModel.scootersListState.collectAsState()
-                ScootersListScreen(uiState.value) {
-                    Toast.makeText(baseContext, it.name, Toast.LENGTH_LONG).show()
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = ScooterScreenRoute) {
+                    composable<ScooterScreenRoute> {
+                        ScootersListScreen(uiState.value) {
+                            navController.navigate(
+                                ScooterDetailScreenRoute(
+                                    id = it.id,
+                                    name = it.name,
+                                    battery = it.battery,
+                                    inUse = it.inUse,
+                                    needFix = it.needFix,
+                                    totalRides = it.totalRides,
+                                ),
+                            )
+                        }
+                    }
+
+                    composable<ScooterDetailScreenRoute> {
+                        val args = it.toRoute<ScooterDetailScreenRoute>()
+                        ScooterDetailsScreen(
+                            Scooter(
+                                id = args.id,
+                                name = args.name,
+                                battery = args.battery,
+                                inUse = args.inUse,
+                                needFix = args.needFix,
+                                totalRides = args.totalRides,
+                            ),
+                        )
+                    }
                 }
             }
         }
     }
 }
+
+@Serializable
+object ScooterScreenRoute
+
+@Serializable
+data class ScooterDetailScreenRoute(
+    val id: Int,
+    val name: String,
+    val battery: Float,
+    val inUse: Boolean,
+    val needFix: Boolean,
+    val totalRides: Int,
+)

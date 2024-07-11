@@ -34,6 +34,7 @@ retrofit2-convertorer-gson = {module = "com.squareup.retrofit2:converter-gson", 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 retorfit2 = ["retrofit2-retrofit","retrofit2-convertorer-gson" ]

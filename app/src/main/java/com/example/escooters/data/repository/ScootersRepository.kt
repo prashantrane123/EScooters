@@ -1,5 +1,6 @@
 package com.example.escooters.data.repository
 
+import android.util.Log
 import com.example.escooters.data.model.ScootersResponse
 import com.example.escooters.network.api.ScootersApi
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +16,7 @@ class ScootersRepository
 
         suspend fun getScooters(): Flow<ScootersResponse> =
             flow {
+                Log.d("Api", "Calling")
                 val response = scootersApi.getScooters()
                 if (response.isSuccessful) {
                     response.body()?.let { emit(it) }

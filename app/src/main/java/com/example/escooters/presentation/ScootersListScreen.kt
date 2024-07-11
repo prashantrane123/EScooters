@@ -24,7 +24,7 @@ import com.example.escooters.data.model.Scooter
 
 @Composable
 fun ScootersListScreen(
-    uiState: ScootersViewModel.ScooterListUiState= ScootersViewModel.ScooterListUiState.Loading,
+    uiState: ScootersViewModel.ScooterListUiState = ScootersViewModel.ScooterListUiState.Loading,
     onScooterClick: (Scooter) -> Unit,
 ) {
     when (uiState) {
@@ -34,19 +34,33 @@ fun ScootersListScreen(
 
         is ScootersViewModel.ScooterListUiState.Loading -> {
             Box(
-                modifier = Modifier
-                    .fillMaxSize() // Fill the entire screen
-                    .padding(16.dp), // Add padding for visual spacing
-                contentAlignment = Alignment.Center // Center the CircularProgressIndicator
+                modifier =
+                    Modifier
+                        .fillMaxSize() // Fill the entire screen
+                        .padding(16.dp),
+                // Add padding for visual spacing
+                contentAlignment = Alignment.Center, // Center the CircularProgressIndicator
             ) {
                 CircularProgressIndicator() // Place the CircularProgressIndicator
             }
-
         }
 
         is ScootersViewModel.ScooterListUiState.Success -> {
-            val scooters = uiState.scooters
-            ScooterList(scooters, onScooterClick)
+            val scooters = uiState.scooterResponse.scooters
+            val cityName = uiState.scooterResponse.name
+            Column(
+                modifier =
+                    Modifier
+                        .padding(vertical = 50.dp, horizontal = 16.dp)
+                        .fillMaxWidth(),
+            ) {
+                Text(
+                    text = cityName,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(6.dp))
+                ScooterList(scooters, onScooterClick)
+            }
         }
     }
 }
@@ -58,9 +72,9 @@ fun ScooterList(
 ) {
     LazyColumn(
         modifier =
-        Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         items(scooters) { scooter ->
             ScooterListItem(scooter, onScooterClick)
@@ -75,16 +89,16 @@ fun ScooterListItem(
 ) {
     Card(
         modifier =
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-            .clickable { onScooterClick(scooter) },
+            Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+                .clickable { onScooterClick(scooter) },
     ) {
         Column(
             modifier =
-            Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+                Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
         ) {
             Text(
                 text = scooter.name,
