@@ -18,34 +18,39 @@ import androidx.compose.ui.unit.dp
 import com.example.escooters.data.model.Scooter
 
 @Composable
-fun ScooterDetailsScreen(
-    scooter: Scooter
-){
-Box(modifier =  Modifier.padding(vertical = 50.dp, horizontal = 16.dp)) {
-    Card(
-        modifier =
-        Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
-        Column(
+fun ScooterDetailsScreen(scooter: Scooter) {
+    Box(modifier = Modifier.padding(vertical = 50.dp, horizontal = 16.dp)) {
+        Card(
             modifier =
-            Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
         ) {
-            Text(
-                text = scooter.name,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Battery: ${scooter.battery}%")
-                Spacer(modifier = Modifier.weight(1f))
-                val availabilityText = if (scooter.inUse) "In Use" else "Available"
-                Text(text = availabilityText, color = if (scooter.inUse) Color.Red else Color.Green)
+            Column(
+                modifier =
+                    Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+            ) {
+                Text(
+                    text = scooter.name,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Battery: ${scooter.battery}%")
+                    Spacer(modifier = Modifier.weight(1f))
+                    val availabilityText = if (scooter.inUse) "In Use" else "Available"
+                    Text(text = availabilityText, color = if (scooter.inUse) Color.Red else Color.Green)
+                }
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Rides: ${scooter.totalRides}")
+                    Spacer(modifier = Modifier.weight(1f))
+                    val availabilityText = if (scooter.needFix) "Needs Fix" else "Ready"
+                    Text(text = availabilityText, color = if (scooter.needFix) Color.Red else Color.Blue)
+                }
             }
         }
     }
-}
 }
