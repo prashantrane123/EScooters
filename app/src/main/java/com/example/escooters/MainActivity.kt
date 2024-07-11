@@ -10,13 +10,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.example.escooters.data.model.Scooter
-import com.example.escooters.presentation.ScooterDetailsScreen
-import com.example.escooters.presentation.ScootersListScreen
-import com.example.escooters.presentation.ScootersViewModel
+import com.example.escooters.screen.data.model.Scooter
+import com.example.escooters.screen.scooterdetails.view.ScooterDetailsScreen
+import com.example.escooters.screen.scooters.view.ScootersListScreen
+import com.example.escooters.screen.scooters.viewmodel.ScootersViewModel
 import com.example.escooters.ui.theme.EScootersTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.Serializable
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

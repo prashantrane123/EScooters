@@ -1,4 +1,4 @@
-package com.example.escooters.presentation
+package com.example.escooters.screen.scooterdetails.view
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.escooters.data.model.Scooter
+import com.example.escooters.screen.data.model.Scooter
 
 @Composable
 fun ScooterDetailsScreen(scooter: Scooter) {

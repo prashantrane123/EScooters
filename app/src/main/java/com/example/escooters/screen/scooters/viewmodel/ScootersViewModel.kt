@@ -1,9 +1,9 @@
-package com.example.escooters.presentation
+package com.example.escooters.screen.scooters.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.escooters.data.model.ScootersResponse
-import com.example.escooters.data.repository.ScootersRepository
+import com.example.escooters.screen.data.repository.ScootersRepository
+import com.example.escooters.screen.scooters.uistate.ScooterListUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,10 +28,4 @@ class ScootersViewModel @Inject constructor(
         }
     }
 
-    sealed class ScooterListUiState {
-
-        data object Loading : ScooterListUiState()
-        data class Success(val scooterResponse: ScootersResponse) : ScooterListUiState()
-        data class Error(val message: String) : ScooterListUiState()
-    }
 }

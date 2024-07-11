@@ -23,11 +23,9 @@ class RetrofitModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
-*/
-/*
     @Provides
     fun provideScooterApi(retrofit: Retrofit): ScootersApi = retrofit.create(ScootersApi::class.java)
-*//*
+
 
 
 

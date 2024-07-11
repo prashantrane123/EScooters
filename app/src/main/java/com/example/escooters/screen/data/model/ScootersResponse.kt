@@ -1,4 +1,4 @@
-package com.example.escooters.data.model
+package com.example.escooters.screen.data.model
 
 import com.google.gson.annotations.SerializedName
 

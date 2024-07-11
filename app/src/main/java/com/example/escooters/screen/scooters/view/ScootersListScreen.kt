@@ -1,4 +1,4 @@
-package com.example.escooters.presentation
+package com.example.escooters.screen.scooters.view
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -20,32 +20,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.escooters.data.model.Scooter
+import com.example.escooters.screen.data.model.Scooter
+import com.example.escooters.screen.scooters.uistate.ScooterListUiState
 
 @Composable
 fun ScootersListScreen(
-    uiState: ScootersViewModel.ScooterListUiState = ScootersViewModel.ScooterListUiState.Loading,
+    uiState: ScooterListUiState = ScooterListUiState.Loading,
     onScooterClick: (Scooter) -> Unit,
 ) {
     when (uiState) {
-        is ScootersViewModel.ScooterListUiState.Error -> {
+        is ScooterListUiState.Error -> {
             Text(text = uiState.message)
         }
 
-        is ScootersViewModel.ScooterListUiState.Loading -> {
+        is ScooterListUiState.Loading -> {
             Box(
                 modifier =
                     Modifier
-                        .fillMaxSize() // Fill the entire screen
+                        .fillMaxSize()
                         .padding(16.dp),
-                // Add padding for visual spacing
-                contentAlignment = Alignment.Center, // Center the CircularProgressIndicator
+                contentAlignment = Alignment.Center,
             ) {
-                CircularProgressIndicator() // Place the CircularProgressIndicator
+                CircularProgressIndicator()
             }
         }
 
-        is ScootersViewModel.ScooterListUiState.Success -> {
+        is ScooterListUiState.Success -> {
             val scooters = uiState.scooterResponse.scooters
             val cityName = uiState.scooterResponse.name
             Column(

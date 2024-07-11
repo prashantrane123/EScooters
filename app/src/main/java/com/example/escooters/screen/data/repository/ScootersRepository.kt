@@ -1,7 +1,7 @@
-package com.example.escooters.data.repository
+package com.example.escooters.screen.data.repository
 
 import android.util.Log
-import com.example.escooters.data.model.ScootersResponse
+import com.example.escooters.screen.data.model.ScootersResponse
 import com.example.escooters.network.api.ScootersApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
