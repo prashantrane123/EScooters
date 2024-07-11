@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                                     inUse = it.inUse,
                                     needFix = it.needFix,
                                     totalRides = it.totalRides,
-                                ),
+                                )
                             )
                         }
                     }
