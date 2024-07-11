@@ -2,7 +2,6 @@ package com.example.escooters.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.escooters.data.model.Scooter
 import com.example.escooters.data.model.ScootersResponse
 import com.example.escooters.data.repository.ScootersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

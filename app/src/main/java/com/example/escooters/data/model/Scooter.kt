@@ -3,6 +3,7 @@ package com.example.escooters.data.model
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
+
 @Serializable
 data class Scooter(
     @SerializedName("id") var id: Int,
