@@ -30,7 +30,15 @@ fun ScootersListScreen(
 ) {
     when (uiState) {
         is ScooterListUiState.Error -> {
-            Text(text = uiState.message)
+            Box(
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(16.dp),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text(text = uiState.message)
+            }
         }
 
         is ScooterListUiState.Loading -> {
